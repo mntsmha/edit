@@ -3,45 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صفحة ويب ثلاثية الأبعاد</title>
+    <title>محترف مونتاج فيديو | [اسمك]</title>
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <style>
+        /* الخطوط */
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Poppins:wght@400;600&display=swap');
+
         body {
             margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: #0d1117;
-            color: #c9d1d9;
+            font-family: 'Cairo', sans-serif; /* استخدام خط عربي مميز */
+            background-color: #0a0a0f; /* خلفية أغمق */
+            color: #e0e0e0; /* لون نص أفتح قليلاً */
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 2rem;
+            padding: 1.2rem 3rem; /* مساحة أكبر لشريط التنقل */
+            background-color: rgba(10, 10, 15, 0.7); /* خلفية شفافة لشريط التنقل */
+            backdrop-filter: blur(5px); /* تأثير ضبابي */
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(50, 50, 60, 0.3);
         }
 
         nav .logo {
-            font-size: 1.5rem;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
             font-weight: bold;
-            color: #58a6ff;
+            color: #00d4ff; /* لون شعار أزرق سماوي */
             text-decoration: none;
         }
 
         nav ul {
             list-style: none;
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem; /* مسافة أكبر بين الروابط */
+            margin: 0;
+            padding: 0;
         }
 
         nav ul li a {
-            color: #c9d1d9;
+            color: #e0e0e0;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: color 0.3s ease-in-out;
+            position: relative;
         }
 
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            background-color: #00d4ff;
+            left: 0;
+            bottom: -5px;
+            transition: width 0.3s ease-in-out;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
         nav ul li a:hover {
-            color: #58a6ff;
+            color: #00d4ff;
         }
 
         .hero-section {
@@ -50,60 +79,97 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            height: 90vh;
-            padding: 2rem;
+            min-height: 95vh; /* ارتفاع أكبر لقسم البطل */
+            padding: 3rem 2rem;
             position: relative;
+            overflow: hidden; /* لمنع تجاوز العناصر */
         }
 
         .hero-section .content {
-            z-index: 2;
+            z-index: 3; /* أعلى من النماذج ثلاثية الأبعاد */
+            max-width: 800px;
+            margin-bottom: 3rem;
         }
 
         .hero-section h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #58a6ff, #9f7aea);
+            font-family: 'Poppins', sans-serif;
+            font-size: 4rem; /* حجم خط أكبر */
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #00d4ff, #8e2de2); /* تدرج ألوان جديد */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            line-height: 1.2;
         }
 
         .hero-section p {
-            max-width: 600px;
-            margin-bottom: 2rem;
-            line-height: 1.6;
+            font-size: 1.3rem; /* حجم خط أكبر للوصف */
+            max-width: 700px;
+            margin-bottom: 2.5rem;
+            color: #bdbdbd;
         }
 
         .cta-button {
-            background-color: #58a6ff;
+            background-image: linear-gradient(45deg, #00d4ff, #8e2de2); /* زر بتدرج ألوان */
             color: #fff;
             border: none;
-            padding: 0.8rem 2rem;
-            font-size: 1rem;
-            border-radius: 5px;
+            padding: 1rem 2.5rem; /* حجم زر أكبر */
+            font-size: 1.1rem;
+            border-radius: 50px; /* زر دائري الحواف */
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4);
         }
 
         .cta-button:hover {
-            background-color: #4092e0;
+            transform: translateY(-5px); /* تأثير رفع عند التمرير */
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.6);
         }
 
-        .spline-container {
+        /* حاوية النموذج ثلاثي الأبعاد الرئيسي */
+        .main-spline-container {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 1;
+            z-index: 1; /* أسفل المحتوى */
+        }
+
+        /* حاوية أيقونة الفيديو ثلاثية الأبعاد */
+        .video-icon-spline-container {
+            position: absolute;
+            bottom: 5%; /* موضع في الأسفل */
+            right: 5%; /* موضع في اليمين */
+            width: 200px; /* حجم الأيقونة */
+            height: 200px;
+            z-index: 2; /* فوق الخلفية ثلاثية الأبعاد لكن أسفل النص */
+            opacity: 0.7; /* شفافية بسيطة */
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .video-icon-spline-container:hover {
+            opacity: 1; /* تصبح واضحة عند التمرير */
         }
 
         /* التجاوب مع الشاشات الصغيرة */
         @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
             nav ul {
-                display: none;
+                display: none; /* إخفاء قائمة التنقل في الجوال */
             }
             .hero-section h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
+            }
+            .hero-section p {
+                font-size: 1rem;
+            }
+            .video-icon-spline-container {
+                width: 120px;
+                height: 120px;
+                bottom: 2%;
+                right: 2%;
             }
         }
     </style>
@@ -112,32 +178,37 @@
 
     <header>
         <nav>
-            <a href="#" class="logo">موقعي</a>
-            <ul>
+            <a href="#" class="logo">[مصطفى]</a> <ul>
                 <li><a href="#">الرئيسية</a></li>
-                <li><a href="#">المنتجات</a></li>
-                <li><a href="#">اتصل بنا</a></li>
+                <li><a href="#">أعمالي</a></li>
+                <li><a href="#">تواصل</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
         <section class="hero-section">
-            <div class="content" data-aos="fade-up">
-                <h1>مستقبلك يبدأ هنا</h1>
-                <p>استكشف عالمنا الافتراضي الجديد. تصميم مبتكر، تجربة فريدة.</p>
-                <button class="cta-button">اكتشف الآن</button>
+            <div class="content" data-aos="fade-up" data-aos-duration="1000">
+                <h1>أنا [مصطفى]، محترف مونتاج فيديو</h1> <p>خبرة سنتين في تحويل الأفكار إلى قصص بصرية جذابة. أقدم مونتاج احترافي، مؤثرات بصرية إبداعية، وتصحيح ألوان لإنتاج فيديوهات لا تُنسى.</p>
+                <button class="cta-button">شاهد أعمالي</button>
             </div>
             
-            <div class="spline-container">
-                <iframe src="https://my.spline.design/3dobject-d39a67a5b3a4c0a5b81a5c6b6d51d4e7/" frameborder="0" width="100%" height="100%"></iframe>
+            <div class="main-spline-container">
+                <iframe src="https://my.spline.design/interactablecube-ecb43440e6c5ee009e5ee9393d226a33/" frameborder="0" width="100%" height="100%"></iframe>
+            </div>
+
+            <div class="video-icon-spline-container" data-aos="zoom-in" data-aos-delay="500">
+                <iframe src="https://my.spline.design/playbutton-b52b217117070776b1f23b207a16f6b5/" frameborder="0" width="100%" height="100%"></iframe>
             </div>
         </section>
     </main>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-      AOS.init();
+      AOS.init({
+          once: true, // تشغيل الأنيماشن مرة واحدة فقط عند التحميل
+          duration: 800, // مدة الأنيماشن
+      });
     </script>
 </body>
 </html>
