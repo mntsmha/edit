@@ -11,9 +11,9 @@
 
         body {
             margin: 0;
-            font-family: 'Cairo', sans-serif; /* استخدام خط عربي مميز */
-            background-color: #0a0a0f; /* خلفية أغمق */
-            color: #e0e0e0; /* لون نص أفتح قليلاً */
+            font-family: 'Cairo', sans-serif;
+            background-color: #0a0a0f;
+            color: #e0e0e0;
             overflow-x: hidden;
             line-height: 1.6;
         }
@@ -22,9 +22,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.2rem 3rem; /* مساحة أكبر لشريط التنقل */
-            background-color: rgba(10, 10, 15, 0.7); /* خلفية شفافة لشريط التنقل */
-            backdrop-filter: blur(5px); /* تأثير ضبابي */
+            padding: 1.2rem 3rem;
+            background-color: rgba(10, 10, 15, 0.7);
+            backdrop-filter: blur(5px);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -35,14 +35,14 @@
             font-family: 'Poppins', sans-serif;
             font-size: 1.8rem;
             font-weight: bold;
-            color: #00d4ff; /* لون شعار أزرق سماوي */
+            color: #00d4ff;
             text-decoration: none;
         }
 
         nav ul {
             list-style: none;
             display: flex;
-            gap: 2.5rem; /* مسافة أكبر بين الروابط */
+            gap: 2.5rem;
             margin: 0;
             padding: 0;
         }
@@ -68,60 +68,81 @@
         nav ul li a:hover::after {
             width: 100%;
         }
-        
+
         nav ul li a:hover {
             color: #00d4ff;
         }
 
+        /* تعديلات على قسم البطل (Hero Section) - تم تغيير التنسيق ليناسب طلبك */
         .hero-section {
             display: flex;
-            flex-direction: column;
+            flex-direction: row; /* جعل العناصر بجانب بعضها */
             align-items: center;
             justify-content: center;
-            text-align: center;
-            min-height: 95vh; /* ارتفاع أكبر لقسم البطل */
+            min-height: 95vh;
             padding: 3rem 2rem;
             position: relative;
-            overflow: hidden; /* لمنع تجاوز العناصر */
+            overflow: hidden;
+            text-align: right; /* محاذاة النص لليمين */
         }
 
         .hero-section .content {
-            z-index: 3; /* أعلى من النماذج ثلاثية الأبعاد */
-            max-width: 800px;
-            margin-bottom: 3rem;
+            z-index: 3;
+            max-width: 50%; /* تقليل العرض لإفساح المجال للصورة */
+            margin-right: 5rem; /* مسافة بين النص والصورة */
+        }
+
+        .hero-section .hero-image-container {
+            z-index: 3;
+            max-width: 40%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-section .hero-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px; /* حواف دائرية للصورة */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* ظل للصورة */
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .hero-section .hero-image:hover {
+            transform: scale(1.05);
         }
 
         .hero-section h1 {
             font-family: 'Poppins', sans-serif;
-            font-size: 4rem; /* حجم خط أكبر */
+            font-size: 4rem;
             margin-bottom: 1.5rem;
-            background: linear-gradient(45deg, #00d4ff, #8e2de2); /* تدرج ألوان جديد */
+            background: linear-gradient(45deg, #00d4ff, #8e2de2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1.2;
         }
 
         .hero-section p {
-            font-size: 1.3rem; /* حجم خط أكبر للوصف */
+            font-size: 1.3rem;
             max-width: 700px;
             margin-bottom: 2.5rem;
             color: #bdbdbd;
         }
 
         .cta-button {
-            background-image: linear-gradient(45deg, #00d4ff, #8e2de2); /* زر بتدرج ألوان */
+            background-image: linear-gradient(45deg, #00d4ff, #8e2de2);
             color: #fff;
             border: none;
-            padding: 1rem 2.5rem; /* حجم زر أكبر */
+            padding: 1rem 2.5rem;
             font-size: 1.1rem;
-            border-radius: 50px; /* زر دائري الحواف */
+            border-radius: 50px;
             cursor: pointer;
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
             box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4);
         }
 
         .cta-button:hover {
-            transform: translateY(-5px); /* تأثير رفع عند التمرير */
+            transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0, 212, 255, 0.6);
         }
 
@@ -132,23 +153,64 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 1; /* أسفل المحتوى */
+            z-index: 1;
         }
 
-        /* حاوية أيقونة الفيديو ثلاثية الأبعاد */
-        .video-icon-spline-container {
-            position: absolute;
-            bottom: 5%; /* موضع في الأسفل */
-            right: 5%; /* موضع في اليمين */
-            width: 200px; /* حجم الأيقونة */
-            height: 200px;
-            z-index: 2; /* فوق الخلفية ثلاثية الأبعاد لكن أسفل النص */
-            opacity: 0.7; /* شفافية بسيطة */
-            transition: opacity 0.3s ease-in-out;
+        /* قسم الأعمال (Portfolio Section) - جديد */
+        .portfolio-section {
+            padding: 5rem 2rem;
+            text-align: center;
         }
 
-        .video-icon-spline-container:hover {
-            opacity: 1; /* تصبح واضحة عند التمرير */
+        .portfolio-section h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #f3ec78, #af4261);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .portfolio-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            width: 350px; /* حجم البطاقة */
+            background-color: #1a1a2e; /* خلفية البطاقة */
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .portfolio-info {
+            padding: 1.5rem;
+        }
+
+        .portfolio-info h3 a {
+            font-family: 'Cairo', sans-serif;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .portfolio-info h3 a:hover {
+            color: #00d4ff;
         }
 
         /* التجاوب مع الشاشات الصغيرة */
@@ -157,7 +219,18 @@
                 padding: 1rem 1.5rem;
             }
             nav ul {
-                display: none; /* إخفاء قائمة التنقل في الجوال */
+                display: none;
+            }
+            .hero-section {
+                flex-direction: column; /* جعل العناصر فوق بعضها في الجوال */
+                text-align: center; /* محاذاة النص للوسط */
+            }
+            .hero-section .content, .hero-section .hero-image-container {
+                max-width: 100%;
+                margin: 0;
+            }
+            .hero-section .content {
+                margin-bottom: 2rem;
             }
             .hero-section h1 {
                 font-size: 2.5rem;
@@ -165,11 +238,8 @@
             .hero-section p {
                 font-size: 1rem;
             }
-            .video-icon-spline-container {
-                width: 120px;
-                height: 120px;
-                bottom: 2%;
-                right: 2%;
+            .portfolio-item {
+                width: 100%;
             }
         }
     </style>
@@ -178,9 +248,10 @@
 
     <header>
         <nav>
-            <a href="#" class="logo">[مصطفى]</a> <ul>
+            <a href="#" class="logo">[اسمك]</a>
+            <ul>
                 <li><a href="#">الرئيسية</a></li>
-                <li><a href="#">أعمالي</a></li>
+                <li><a href="#portfolio">أعمالي</a></li>
                 <li><a href="#">تواصل</a></li>
             </ul>
         </nav>
@@ -188,26 +259,39 @@
 
     <main>
         <section class="hero-section">
-            <div class="content" data-aos="fade-up" data-aos-duration="1000">
-                <h1>أنا [مصطفى]، محترف مونتاج فيديو</h1> <p>خبرة سنتين في تحويل الأفكار إلى قصص بصرية جذابة. أقدم مونتاج احترافي، مؤثرات بصرية إبداعية، وتصحيح ألوان لإنتاج فيديوهات لا تُنسى.</p>
-                <button class="cta-button">شاهد أعمالي</button>
-            </div>
-            
-            <div class="main-spline-container">
-                <iframe src="https://my.spline.design/interactablecube-ecb43440e6c5ee009e5ee9393d226a33/" frameborder="0" width="100%" height="100%"></iframe>
+            <div class="content" data-aos="fade-left" data-aos-duration="1000">
+                <h1>أنا [اسمك]، محترف مونتاج فيديو</h1>
+                <p>خبرة سنتين في تحويل الأفكار إلى قصص بصرية جذابة. أقدم مونتاج احترافي، مؤثرات بصرية إبداعية، وتصحيح ألوان لإنتاج فيديوهات لا تُنسى.</p>
+                <a href="#portfolio" class="cta-button">شاهد أعمالي</a>
             </div>
 
-            <div class="video-icon-spline-container" data-aos="zoom-in" data-aos-delay="500">
-                <iframe src="https://my.spline.design/playbutton-b52b217117070776b1f23b207a16f6b5/" frameborder="0" width="100%" height="100%"></iframe>
+            <div class="hero-image-container" data-aos="fade-right" data-aos-duration="1000">
+                <img src="1000042980.jpg" alt="صورة شخصية" class="hero-image">
             </div>
+
+            <div class="main-spline-container">
+                <iframe src="https://my.spline.design/interactiveblob-421715011933a36270b22a276136c1ae/" frameborder="0" width="100%" height="100%"></iframe>
+            </div>
+        </section>
+
+        <section id="portfolio" class="portfolio-section">
+            <h2>أعمالي</h2>
+            <div class="portfolio-gallery">
+                <div class="portfolio-item" data-aos="zoom-in" data-aos-duration="800">
+                    <img src="https://img.youtube.com/vi/48AxklNdics/maxresdefault.jpg" alt="صورة مصغرة للفيديو">
+                    <div class="portfolio-info">
+                        <h3><a href="https://youtu.be/48AxklNdics?si=zi5ya0CT-QFPd75B" target="_blank">فيديو مونتاج إبداعي</a></h3>
+                    </div>
+                </div>
+                </div>
         </section>
     </main>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
       AOS.init({
-          once: true, // تشغيل الأنيماشن مرة واحدة فقط عند التحميل
-          duration: 800, // مدة الأنيماشن
+          once: true,
+          duration: 800,
       });
     </script>
 </body>
