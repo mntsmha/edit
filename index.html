@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>محترف مونتاج فيديو | [اسمك]</title>
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <title>محترف مونتاج فيديو | مصطفى</title>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/dist/aos.css" />
     <style>
         /* الخطوط */
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Poppins:wght@400;600&display=swap');
@@ -16,6 +16,7 @@
             color: #e0e0e0;
             overflow-x: hidden;
             line-height: 1.6;
+            scroll-behavior: smooth;
         }
 
         nav {
@@ -73,43 +74,32 @@
             color: #00d4ff;
         }
 
-        /* تعديلات على قسم البطل (Hero Section) - تم تغيير التنسيق ليناسب طلبك */
         .hero-section {
             display: flex;
-            flex-direction: row; /* جعل العناصر بجانب بعضها */
+            flex-direction: row;
             align-items: center;
             justify-content: center;
             min-height: 95vh;
             padding: 3rem 2rem;
             position: relative;
             overflow: hidden;
-            text-align: right; /* محاذاة النص لليمين */
+            gap: 5rem;
         }
 
         .hero-section .content {
             z-index: 3;
-            max-width: 50%; /* تقليل العرض لإفساح المجال للصورة */
-            margin-right: 5rem; /* مسافة بين النص والصورة */
+            max-width: 50%;
+            text-align: right;
         }
-
-        .hero-section .hero-image-container {
-            z-index: 3;
-            max-width: 40%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .hero-section .hero-image {
-            max-width: 100%;
-            height: auto;
-            border-radius: 15px; /* حواف دائرية للصورة */
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* ظل للصورة */
+        
+        .hero-section .profile-image {
+            width: 300px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             transition: transform 0.5s ease-in-out;
-        }
-
-        .hero-section .hero-image:hover {
-            transform: scale(1.05);
+            z-index: 3;
         }
 
         .hero-section h1 {
@@ -145,101 +135,99 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0, 212, 255, 0.6);
         }
-
-        /* حاوية النموذج ثلاثي الأبعاد الرئيسي */
-        .main-spline-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-
-        /* قسم الأعمال (Portfolio Section) - جديد */
-        .portfolio-section {
+        
+        /* Portfolio Section */
+        #portfolio-section {
             padding: 5rem 2rem;
             text-align: center;
         }
-
-        .portfolio-section h2 {
-            font-family: 'Poppins', sans-serif;
+        
+        #portfolio-section h2 {
             font-size: 3rem;
             margin-bottom: 3rem;
-            background: linear-gradient(45deg, #f3ec78, #af4261);
+            background: linear-gradient(45deg, #00d4ff, #8e2de2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-
-        .portfolio-gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+            justify-content: center;
         }
-
+        
         .portfolio-item {
-            width: 350px; /* حجم البطاقة */
-            background-color: #1a1a2e; /* خلفية البطاقة */
-            border-radius: 10px;
+            background-color: #1a1a20;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease-in-out;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            text-align: left;
+            position: relative;
         }
-
+        
         .portfolio-item:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
         }
-
+        
         .portfolio-item img {
             width: 100%;
             height: auto;
             display: block;
         }
-
-        .portfolio-info {
-            padding: 1.5rem;
-        }
-
-        .portfolio-info h3 a {
-            font-family: 'Cairo', sans-serif;
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.5rem;
-            transition: color 0.3s ease-in-out;
-        }
-
-        .portfolio-info h3 a:hover {
+        
+        .portfolio-item h3 {
+            padding: 1rem;
+            margin: 0;
+            font-size: 1.2rem;
             color: #00d4ff;
+        }
+        
+        .portfolio-item a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* 3D Camera Model */
+        .video-spline-container {
+            position: absolute;
+            top: 50%;
+            right: 15%;
+            transform: translateY(-50%);
+            width: 150px;
+            height: 150px;
+            z-index: 2;
+            opacity: 0.8;
+            transition: all 0.5s ease-in-out;
+        }
+        
+        .video-spline-container:hover {
+            transform: translateY(-50%) scale(1.1);
+            opacity: 1;
         }
 
         /* التجاوب مع الشاشات الصغيرة */
         @media (max-width: 768px) {
-            nav {
-                padding: 1rem 1.5rem;
-            }
-            nav ul {
-                display: none;
-            }
             .hero-section {
-                flex-direction: column; /* جعل العناصر فوق بعضها في الجوال */
-                text-align: center; /* محاذاة النص للوسط */
-            }
-            .hero-section .content, .hero-section .hero-image-container {
-                max-width: 100%;
-                margin: 0;
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
             }
             .hero-section .content {
-                margin-bottom: 2rem;
+                max-width: 100%;
+                text-align: center;
+            }
+            .hero-section .profile-image {
+                width: 250px;
+                height: 350px;
             }
             .hero-section h1 {
                 font-size: 2.5rem;
             }
             .hero-section p {
                 font-size: 1rem;
-            }
-            .portfolio-item {
-                width: 100%;
             }
         }
     </style>
@@ -248,10 +236,10 @@
 
     <header>
         <nav>
-            <a href="#" class="logo">[اسمك]</a>
+            <a href="#" class="logo">مصطفى</a>
             <ul>
                 <li><a href="#">الرئيسية</a></li>
-                <li><a href="#portfolio">أعمالي</a></li>
+                <li><a href="#portfolio-section">أعمالي</a></li>
                 <li><a href="#">تواصل</a></li>
             </ul>
         </nav>
@@ -259,27 +247,45 @@
 
     <main>
         <section class="hero-section">
-            <div class="content" data-aos="fade-left" data-aos-duration="1000">
-                <h1>أنا [اسمك]، محترف مونتاج فيديو</h1>
+            <div class="content" data-aos="fade-right" data-aos-duration="1000">
+                <h1>أنا مصطفى، محترف مونتاج فيديو</h1>
                 <p>خبرة سنتين في تحويل الأفكار إلى قصص بصرية جذابة. أقدم مونتاج احترافي، مؤثرات بصرية إبداعية، وتصحيح ألوان لإنتاج فيديوهات لا تُنسى.</p>
-                <a href="#portfolio" class="cta-button">شاهد أعمالي</a>
+                <a href="#portfolio-section" class="cta-button">شاهد أعمالي</a>
             </div>
-
-            <div class="hero-image-container" data-aos="fade-right" data-aos-duration="1000">
-                <img src="1000042980.jpg" alt="صورة شخصية" class="hero-image">
+            
+            <img src="https://i.postimg.cc/L59TNszN/IMG-20250210-231536-539.jpg" alt="مصطفى | محترف مونتاج فيديو" class="profile-image" data-aos="fade-left" data-aos-duration="1000">
+            
+            <div class="video-spline-container" data-aos="zoom-in" data-aos-delay="500">
+                <iframe src="https://my.spline.design/camera-d17e764724a2c510e4a77322d7c5f884/" frameborder="0" width="100%" height="100%"></iframe>
             </div>
-
-            <div class="main-spline-container">
-                <iframe src="https://my.spline.design/interactiveblob-421715011933a36270b22a276136c1ae/" frameborder="0" width="100%" height="100%"></iframe>
+            
+        </section>
+        
+        <section id="portfolio-section">
+            <h2>أعمالي</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-aos="fade-up">
+                    <a href="https://youtu.be/48AxklNdics" target="_blank">
+                        <img src="https://img.youtube.com/vi/48AxklNdics/maxresdefault.jpg" alt="أفضل 5 دمج شخصيات فري فاير">
+                        <h3>أفضل 5 دمج شخصيات فري فاير لـوضع كلاش سكواد مصنف 💀?? لازم تجربهم! || Mahmoudffyt</h3>
+                    </a>
+                </div>
+                
             </div>
         </section>
+        
+    </main>
 
-        <section id="portfolio" class="portfolio-section">
-            <h2>أعمالي</h2>
-            <div class="portfolio-gallery">
-                <div class="portfolio-item" data-aos="zoom-in" data-aos-duration="800">
-                    <img src="https://img.youtube.com/vi/48AxklNdics/maxresdefault.jpg" alt="صورة مصغرة للفيديو">
-                    <div class="portfolio-info">
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+          once: false, // تم تعديل هذه الخاصية ليعاد الأنيماشن في كل مرة
+          duration: 800,
+      });
+    </script>
+</body>
+</html>
+                   <div class="portfolio-info">
                         <h3><a href="https://youtu.be/48AxklNdics?si=zi5ya0CT-QFPd75B" target="_blank">فيديو مونتاج إبداعي</a></h3>
                     </div>
                 </div>
